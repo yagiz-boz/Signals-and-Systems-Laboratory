@@ -41,22 +41,22 @@ Ayrık zaman tarafında ise karşılık gelen sinüzoidal ve üstel diziler, bir
 
 Bu bölüm dört temel sinyal işlemini inceler:
 
-- zamanda kaydırma
-- zaman ölçekleme
-- zamanda ters çevirme
-- genlik ölçekleme
+- Zamanda kaydırma
+- Zaman ölçekleme
+- Zamanda ters çevirme
+- Genlik ölçekleme
 
-İşlemler CT ve DT sinyaller için ayrı ayrı uygulanmıştır. Böylece \(x(t)\) ve \(x[n]\) üzerindeki dönüşümlerin farkı açık biçimde korunmuştur.
+İşlemler CT ve DT sinyaller için ayrı ayrı uygulanmıştır. Böylece $x(t)$ ve $x[n]$ üzerindeki dönüşümlerin farkı açık biçimde korunmuştur.
 
 CT zamanda kaydırma deneyinde bir sinüzoidin faz değişimi ile eşdeğer zaman gecikmesi arasındaki
 
-\[
+$$
 t_0=\frac{\phi}{2\pi f}
-\]
+$$
 
 ilişkisi de kullanılmıştır.
 
-Bu scriptlerin temel amacı \(x(t-t_0)\), \(x(at)\), \(x(-t)\) ve \(Ax(t)\) gibi dönüşümlerin sinyal üzerindeki etkisini doğrudan görünür hale getirmektir.
+Bu scriptlerin temel amacı $x(t-t_0)$, $x(at)$, $x(-t)$ ve $Ax(t)$ gibi dönüşümlerin sinyal üzerindeki etkisini doğrudan görünür hale getirmektir.
 
 ## Konvolüsyon
 
@@ -64,23 +64,23 @@ Sürekli ve ayrık zamanlı konvolüsyon örneklerinde MATLAB'ın `conv()` fonks
 
 Ayrık zamanda `conv()` doğrudan
 
-\[
+$$
 y[n]=\sum_k x[k]h[n-k]
-\]
+$$
 
 konvolüsyon toplamını hesaplar.
 
 Sürekli zaman deneyinde
 
-\[
+$$
 x(t)=e^{-t}u(t), \qquad h(t)=e^{-2t}u(t)
-\]
+$$
 
-sinyalleri sonlu bir zaman ızgarasında örneklenmiştir. MATLAB sayısal diziler üzerinde konvolüsyon toplamı gerçekleştirdiği için sonuç örnekleme aralığı \(\Delta t\) ile ölçeklendirilmiştir:
+sinyalleri sonlu bir zaman ızgarasında örneklenmiştir. MATLAB sayısal diziler üzerinde konvolüsyon toplamı gerçekleştirdiği için sonuç örnekleme aralığı $\Delta t$ ile ölçeklendirilmiştir:
 
-\[
-y(t)\approx \Delta t\,\mathrm{conv}(x,h).
-\]
+$$
+y(t)\approx \Delta t\,\mathrm{conv}(x,h)
+$$
 
 Bu işlem sürekli zaman konvolüsyon integralinin sayısal yaklaşımını verir. Aynı deney, konvolüsyon sonucunun neden giriş sinyallerinden farklı uzunlukta olduğunu ve kendine ait bir zaman eksenine ihtiyaç duyduğunu da gösterir.
 
@@ -92,14 +92,14 @@ Fourier bölümü, bütün işlemleri tek bir sayısal yöntem altında toplamak
 
 Periyodik bir kare dalga tek harmoniklerinin toplamı ile yeniden oluşturulmuştur:
 
-\[
+$$
 x(t)=\frac{4}{\pi}
 \left[
 \sin(\omega_0t)
 +\frac{1}{3}\sin(3\omega_0t)
 +\frac{1}{5}\sin(5\omega_0t)+\cdots
-\right].
-\]
+\right]
+$$
 
 Farklı sayıda harmonik kullanılarak yapılan rekonstrüksiyonlar, toplamın kare dalgaya nasıl yaklaştığını ve süreksizlik noktalarının çevresindeki Gibbs olgusunu görsel olarak ortaya koyar.
 
@@ -107,14 +107,14 @@ Farklı sayıda harmonik kullanılarak yapılan rekonstrüksiyonlar, toplamın k
 
 Sonlu ve periyodik bir dizinin DTFS katsayıları
 
-\[
+$$
 C_k=\frac{1}{N}\sum_{n=0}^{N-1}
 x[n]e^{-j2\pi kn/N}
-\]
+$$
 
 ifadesinden doğrudan hesaplanmıştır.
 
-Katsayıların genlik ve fazları ayrı olarak gösterilmiştir. Bu deney, \(N\)-periyodik bir ayrık zaman dizisinin \(N\) adet farklı Fourier serisi katsayısına sahip olduğunu uygulamalı olarak gösterir.
+Katsayıların genlik ve fazları ayrı olarak gösterilmiştir. Bu deney, $N$-periyodik bir ayrık zaman dizisinin $N$ adet farklı Fourier serisi katsayısına sahip olduğunu uygulamalı olarak gösterir.
 
 ### Sürekli Zaman Fourier Dönüşümü (CTFT)
 
@@ -122,18 +122,18 @@ CTFT deneylerinde analitik dönüşüm çiftlerini ve temel özellikleri incelem
 
 Örnekler:
 
-- dikdörtgen darbenin CTFT'si,
-- azalan üstel sinyalin dönüşümü,
-- genlik ve faz spektrumları,
-- zamanda kaydırma özelliği.
+- Dikdörtgen darbenin CTFT'si
+- Azalan üstel sinyalin dönüşümü
+- Genlik ve faz spektrumları
+- Zamanda kaydırma özelliği
 
 Zamanda kaydırma deneyinde
 
-\[
+$$
 x(t-t_0)
 \longleftrightarrow
 e^{-j\omega t_0}X(\omega)
-\]
+$$
 
 özelliği incelenmiştir. Orijinal ve kaydırılmış sinyal frekans domeninde karşılaştırıldığında genlik spektrumunun değişmediği, gecikme bilgisinin ise faz spektrumuna taşındığı görülür.
 
@@ -145,17 +145,17 @@ Sonlu ayrık zaman dizileri frekans domeninde `freqz()` kullanılarak değerlend
 
 DTFT deneyleri:
 
-- genlik ve faz,
-- \(2\pi\)-periyodiklik,
-- zamanda kaydırma
+- Genlik ve faz
+- $2\pi$-periyodiklik
+- Zamanda kaydırma
 
 özelliklerini kapsar.
 
 Periyodiklik deneyinde
 
-\[
+$$
 X(e^{j(\omega+2\pi)})=X(e^{j\omega})
-\]
+$$
 
 özelliğini görünür hale getirmek için hesaplanan spektrum birden fazla periyot boyunca tekrar çizilmiştir.
 
@@ -165,7 +165,15 @@ Zamanda kaydırma deneyinde ise CTFT'deki özelliğin ayrık zaman karşılığ�
 
 Fourier bölümünün son deneyi, analitik dönüşüm gösterimlerinden örneklenmiş verinin pratik spektral analizine geçiş yapar.
 
-50 Hz ve 120 Hz bileşenlerinden oluşan bir sinyal üretilmiş ve MATLAB'ın `fft()` fonksiyonu kullanılarak dönüştürülmüştür. FFT, DFT'yi verimli biçimde hesaplayan algoritmadır. Elde edilen çift taraflı spektrum normalize edilerek tek taraflı genlik spektrumuna dönüştürülmüştür.
+50 Hz ve 120 Hz bileşenlerinden oluşan
+
+$$
+x(t)=\sin(2\pi50t)+0.5\sin(2\pi120t)
+$$
+
+sinyali üretilmiş ve MATLAB'ın `fft()` fonksiyonu kullanılarak dönüştürülmüştür.
+
+FFT, DFT'yi verimli biçimde hesaplayan algoritmadır. Elde edilen çift taraflı spektrum normalize edilerek tek taraflı genlik spektrumuna dönüştürülmüştür.
 
 Bu deney, zaman domeninde doğrudan ayırt edilmesi zor olabilen frekans bileşenlerinin frekans domeninde açık biçimde belirlenebilmesini gösterir.
 
@@ -175,19 +183,19 @@ Laplace bölümü sembolik dönüşüm işlemlerine ve sürekli zamanlı sistem 
 
 `laplace()` ve `ilaplace()` fonksiyonları
 
-\[
+$$
 e^{-2t}, \qquad t, \qquad \sin(3t)
-\]
+$$
 
 gibi standart sinyaller üzerinde kullanılarak ileri ve ters dönüşüm çiftleri doğrudan kontrol edilmiştir.
 
 Daha sonra
 
-\[
+$$
 H(s)=\frac{1}{s^2+2s+5}
-\]
+$$
 
-sürekli zaman transfer fonksiyonu MATLAB'ın `tf` gösterimi ile oluşturulmuştur. Sistemin kutup ve sıfırları programatik olarak hesaplanmış ve `pzmap()` ile \(s\)-düzleminde gösterilmiştir.
+sürekli zaman transfer fonksiyonu MATLAB'ın `tf` gösterimi ile oluşturulmuştur. Sistemin kutup ve sıfırları programatik olarak hesaplanmış ve `pzmap()` ile $s$-düzleminde gösterilmiştir.
 
 Bu bölümde Laplace dönüşümü yalnızca cebirsel bir işlem olmaktan çıkarak LTI sistem analizine bağlanır. Kutuplar, sadece paydanın kökleri olarak değil, sistem dinamiği ve kararlılığı hakkında bilgi taşıyan büyüklükler olarak ele alınır.
 
@@ -195,13 +203,13 @@ Bu bölümde Laplace dönüşümü yalnızca cebirsel bir işlem olmaktan çıka
 
 Z-dönüşümü bölümü, ayrık zamanlı sinyaller ve sistemler için dönüşüm domenindeki karşılıkları ele alır.
 
-\[
+$$
 x[n]=(0.5)^n
-\]
+$$
 
 dizisinin dönüşümü `ztrans()` ile alınmış, ardından `iztrans()` kullanılarak zaman domenindeki dizi tekrar elde edilmiştir. Bu yapı Laplace bölümündeki ileri ve ters dönüşüm örnekleriyle doğrudan paralellik kurar.
 
-Ardından ayrık zamanlı bir transfer fonksiyonu oluşturulmuş ve kutup-sıfır yapısı \(z\)-düzleminde incelenmiştir. Kullanılan örnekte \(z=0.5\) noktasındaki kutup üzerinden kutup konumu, birim çember ve ayrık zamanlı sistem kararlılığı arasındaki ilişkiye geçiş yapılmıştır.
+Ardından ayrık zamanlı bir transfer fonksiyonu oluşturulmuş ve kutup-sıfır yapısı $z$-düzleminde incelenmiştir. Kullanılan örnekte $z=0.5$ noktasındaki kutup üzerinden kutup konumu, birim çember ve ayrık zamanlı sistem kararlılığı arasındaki ilişkiye geçiş yapılmıştır.
 
 ## Kullanılan MATLAB Araçları
 
