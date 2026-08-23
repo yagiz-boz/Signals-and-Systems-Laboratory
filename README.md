@@ -41,42 +41,42 @@ The discrete-time section contains the corresponding sinusoidal and exponential 
 
 The signal manipulation scripts examine four basic operations:
 
-- time shifting
-- time scaling
-- time reversal
-- amplitude scaling
+- Time shifting
+- Time scaling
+- Time reversal
+- Amplitude scaling
 
-The operations are implemented separately for CT and DT signals so that the distinction between transformations of \(x(t)\) and \(x[n]\) remains explicit.
+The operations are implemented separately for CT and DT signals so that the distinction between transformations of $x(t)$ and $x[n]$ remains explicit.
 
-The CT time-shifting experiment also connects a phase displacement of a sinusoid to an equivalent time delay,
+The CT time-shifting experiment also connects a phase displacement of a sinusoid to an equivalent time delay:
 
-\[
-t_0=\frac{\phi}{2\pi f}.
-\]
+$$
+t_0=\frac{\phi}{2\pi f}
+$$
 
-These scripts are mainly intended to make transformations such as \(x(t-t_0)\), \(x(at)\), \(x(-t)\), and \(Ax(t)\) visually immediate.
+These scripts are mainly intended to make transformations such as $x(t-t_0)$, $x(at)$, $x(-t)$, and $Ax(t)$ visually immediate.
 
 ## Convolution
 
 Both continuous- and discrete-time convolution are implemented with MATLAB's `conv()` function.
 
-For a discrete-time sequence, `conv()` directly evaluates the convolution sum,
+For a discrete-time sequence, `conv()` directly evaluates the convolution sum:
 
-\[
-y[n]=\sum_k x[k]h[n-k].
-\]
+$$
+y[n]=\sum_k x[k]h[n-k]
+$$
 
 For the continuous-time experiment, the signals
 
-\[
+$$
 x(t)=e^{-t}u(t), \qquad h(t)=e^{-2t}u(t)
-\]
+$$
 
-are represented on a finite time grid. MATLAB still performs a convolution of numerical arrays, so the output is multiplied by the sampling interval \(\Delta t\):
+are represented on a finite time grid. MATLAB still performs a convolution of numerical arrays, so the output is multiplied by the sampling interval $\Delta t$:
 
-\[
-y(t)\approx \Delta t\,\mathrm{conv}(x,h).
-\]
+$$
+y(t)\approx \Delta t\,\mathrm{conv}(x,h)
+$$
 
 This provides a numerical approximation to the continuous convolution integral and also illustrates why the convolution output requires its own time axis.
 
@@ -86,29 +86,29 @@ The Fourier section is divided according to the signal representation being stud
 
 ### Continuous-Time Fourier Series (CTFS)
 
-A periodic square wave is reconstructed from its odd harmonics,
+A periodic square wave is reconstructed from its odd harmonics:
 
-\[
+$$
 x(t)=\frac{4}{\pi}
 \left[
 \sin(\omega_0t)
 +\frac{1}{3}\sin(3\omega_0t)
 +\frac{1}{5}\sin(5\omega_0t)+\cdots
-\right].
-\]
+\right]
+$$
 
 The reconstruction is repeated with increasing harmonic content. This makes the convergence toward the square wave visible and gives a direct view of the Gibbs phenomenon near discontinuities.
 
 ### Discrete-Time Fourier Series (DTFS)
 
-A finite periodic sequence is represented through its DTFS coefficients,
+A finite periodic sequence is represented through its DTFS coefficients:
 
-\[
+$$
 C_k=\frac{1}{N}\sum_{n=0}^{N-1}
-x[n]e^{-j2\pi kn/N}.
-\]
+x[n]e^{-j2\pi kn/N}
+$$
 
-The coefficients are calculated explicitly and their magnitude and phase are displayed. This experiment emphasizes that an \(N\)-periodic discrete-time sequence has \(N\) distinct Fourier-series coefficients.
+The coefficients are calculated explicitly and their magnitude and phase are displayed. This experiment emphasizes that an $N$-periodic discrete-time sequence has $N$ distinct Fourier-series coefficients.
 
 ### Continuous-Time Fourier Transform (CTFT)
 
@@ -116,18 +116,18 @@ The CTFT experiments use symbolic MATLAB tools to study analytical transform pai
 
 The examples include:
 
-- the CTFT of a rectangular pulse,
-- the transform of a decaying exponential,
-- magnitude and phase representations,
-- the time-shifting property.
+- The CTFT of a rectangular pulse
+- The transform of a decaying exponential
+- Magnitude and phase representations
+- The time-shifting property
 
 For the time-shifting experiment,
 
-\[
+$$
 x(t-t_0)
 \longleftrightarrow
-e^{-j\omega t_0}X(\omega),
-\]
+e^{-j\omega t_0}X(\omega)
+$$
 
 the original and shifted signals are compared in the frequency domain. The magnitude remains unchanged while the phase carries the effect of the delay.
 
@@ -139,15 +139,15 @@ Finite sequences are evaluated in frequency using `freqz()`. Although `freqz()` 
 
 The DTFT experiments cover:
 
-- magnitude and phase,
-- \(2\pi\)-periodicity,
-- time shifting.
+- Magnitude and phase
+- $2\pi$-periodicity
+- Time shifting
 
 The periodicity experiment explicitly repeats the evaluated spectrum to illustrate
 
-\[
-X(e^{j(\omega+2\pi)})=X(e^{j\omega}).
-\]
+$$
+X(e^{j(\omega+2\pi)})=X(e^{j\omega})
+$$
 
 The time-shifting experiment shows the DT counterpart of the CTFT property: delaying a sequence changes its phase response without changing its magnitude spectrum.
 
@@ -155,7 +155,13 @@ The time-shifting experiment shows the DT counterpart of the CTFT property: dela
 
 The final Fourier experiment moves from analytical transform representations to practical spectral analysis of sampled data.
 
-A signal containing 50 Hz and 120 Hz sinusoidal components is generated and transformed using MATLAB's `fft()` implementation. The FFT computes the DFT efficiently; the resulting two-sided spectrum is normalized and converted into a single-sided amplitude spectrum.
+A signal containing 50 Hz and 120 Hz sinusoidal components is generated:
+
+$$
+x(t)=\sin(2\pi 50t)+0.5\sin(2\pi120t)
+$$
+
+The signal is transformed using MATLAB's `fft()` implementation. The FFT computes the DFT efficiently; the resulting two-sided spectrum is normalized and converted into a single-sided amplitude spectrum.
 
 The experiment demonstrates how frequency components that are not immediately obvious in the time waveform become directly identifiable in the frequency domain.
 
@@ -165,19 +171,19 @@ The Laplace section focuses on symbolic transform operations and continuous-time
 
 `laplace()` and `ilaplace()` are used on standard signals such as
 
-\[
-e^{-2t}, \qquad t, \qquad \sin(3t),
-\]
+$$
+e^{-2t}, \qquad t, \qquad \sin(3t)
+$$
 
 so that forward and inverse transform pairs can be checked directly.
 
-The section then introduces a continuous-time transfer function,
+The section then introduces a continuous-time transfer function:
 
-\[
-H(s)=\frac{1}{s^2+2s+5},
-\]
+$$
+H(s)=\frac{1}{s^2+2s+5}
+$$
 
-using MATLAB's `tf` representation. Its poles and zeros are obtained programmatically and displayed in the \(s\)-plane with `pzmap()`.
+MATLAB's `tf` representation is used to construct the system. Its poles and zeros are obtained programmatically and displayed in the $s$-plane with `pzmap()`.
 
 This is the point where the transform is connected to LTI system analysis: pole locations are no longer only algebraic roots, but quantities that describe system dynamics and stability.
 
@@ -187,17 +193,17 @@ The Z-transform section develops the corresponding transform-domain tools for di
 
 The sequence
 
-\[
+$$
 x[n]=(0.5)^n
-\]
+$$
 
 is transformed using `ztrans()` and recovered using `iztrans()`. This provides a direct parallel with the forward and inverse Laplace examples.
 
-A discrete-time transfer function is then created and its poles and zeros are examined in the \(z\)-plane. In particular, the example places a pole at \(z=0.5\), providing a simple connection between pole location, the unit circle, and discrete-time stability.
+A discrete-time transfer function is then created and its poles and zeros are examined in the $z$-plane. In particular, the example places a pole at $z=0.5$, providing a simple connection between pole location, the unit circle, and discrete-time stability.
 
 ## MATLAB Tools Used
 
-The scripts use a combination of core MATLAB functionality and functions from MATLAB toolboxes, including:
+The scripts use a combination of core MATLAB functionality and functions commonly used in signal and system analysis, including:
 
 - `plot`, `stem`, `subplot`
 - `conv`
